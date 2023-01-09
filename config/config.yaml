@@ -1,0 +1,29 @@
+output_dir: 'runs/save'
+log_dir: 'runs/logs'
+device: 'cuda:2'
+seed: 42
+dataset:
+  name: 'zalo'
+  root: '/home/taft/ALCON_SPC/detect/datasets/frame_classes_16'
+  augmentation:
+    rand_crop_size: 224
+    rand_hori_flip: 0.5
+    rand_rotation: 20
+  train_set: 'train_uniform.csv'
+  val_set: 'val_uniform.csv'
+  mean: [0.5070, 0.4764, 0.4551]
+  sigma: [0.2480, 0.2468, 0.2416]
+
+model:
+  base: 'swin_base'
+  pretrained: True
+  image_size: [300, 300]
+
+train:
+  batch_size: 16
+  optimizer: 'adam'
+  lr: 0.002
+  num_epochs: 300
+
+val:
+  batch_size: 16
